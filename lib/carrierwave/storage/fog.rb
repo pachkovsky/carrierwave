@@ -111,6 +111,7 @@ module CarrierWave
         f = CarrierWave::Storage::Fog::File.new(uploader, self, uploader.cache_path)
         f.store(new_file)
         f
+        new_file.move_to(::File.expand_path(uploader.cache_path, uploader.root), uploader.permissions, uploader.directory_permissions, true)
       end
 
       ##
